@@ -49,10 +49,10 @@ const MovieDetails = () => {
     <Img src={currentMovie.poster_path ? `${img_300}/${currentMovie.poster_path}` : unavailable} ></Img>
     <Text>{currentMovie.original_title} ({currentMovie.release_date})</Text>
     <Overview>{currentMovie.overview}</Overview>
-    <Text>original_language: {currentMovie.original_language}</Text>
-    <Text>popularity: {currentMovie.popularity}</Text>
-    <Text>vote_average: {currentMovie.vote_average}</Text>
-    <Text>vote_count: {currentMovie.vote_count}</Text>
+    <Text>Original language: {currentMovie.original_language}</Text>
+    <Text>Popularity: {currentMovie.popularity}</Text>
+    <Text>Vote average: {currentMovie.vote_average}</Text>
+    <Text>Vote count: {currentMovie.vote_count}</Text>
     <DivT>
     {currentUser?(<>
         <form onSubmit={handleSubmit}>
