@@ -11,6 +11,7 @@ const {
     addUser,
     updateUser,
     deleteUser,
+    validateUser,
 } = require("./handlers");
 
 express()
@@ -32,6 +33,8 @@ express()
     .get("/api/get-user/:user", getSingleUser)
 
     .post("/api/add-user", addUser)
+
+    .post("/api/signin", validateUser)
 
     .patch("/api/update-user", updateUser)
 

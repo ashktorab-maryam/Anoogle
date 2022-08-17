@@ -52,6 +52,7 @@ const addUser = async(req, res) => {
     await client.connect();
     const db = client.db("ANOOGLE");
     console.log("connected!");
+    req.body.email=req.body.email.toLowerCase()
     const result = await db.collection("SignInUser").insertOne(req.body);
     console.log(req.body);
     res.status(201).json({ status: 201, data: req.body,message: "reservation success" });
@@ -64,6 +65,27 @@ catch (err) {
     console.log("disconnected!");
 };
 
+//create sign in
+const validateUser = async(req, res) => {
+    const client = new MongoClient(MONGO_URI, options);
+    try {
+    await client.connect();
+    const db = client.db("ANOOGLE");
+    console.log("connected!");
+    const foundUser = await db.collection("SignInUser").findOne({email:req.body.email.toLowerCase(), password:req.body.password});
+    
+    foundUser?
+        res.status(200).json({ status: 201, data: foundUser    })
+        :
+        res.status(400).json({ status: 400, message: "User not found" });
+    }
+catch (err) {
+    console.log(err.stack);
+}
+    client.close();
+    console.log("disconnected!");
+};
+
 // // updates an existing user
 const updateUser = async (req, res) => {
     const { _id, givenName, surname, email } = req.body;
@@ -71,18 +93,23 @@ const updateUser = async (req, res) => {
     await client.connect();
     const db = client.db("ANOOGLE");
     const query={_id: ObjectId(_id)};
-    const newValues = { $set: { givenName, surname, email } };
+    const newValues = { $set: { givenName, surname } };
+
 
 let isMissing = false
-if(!givenName || !email)
+// if(!givenName || !email)
+// {
+//     isMissing =true
+//     delete req.body._id
+//     res.status(404).json({status:404, message:"seat not available",data: req.body});
+// }
+// else
 {
-    isMissing =true
-    delete req.body._id
-    res.status(404).json({status:404, message:"seat not available",data: req.body});
-}
-else{
     const updateReservation = await db.collection("SignInUser").updateOne(query, newValues);
-    updateReservation.acknowledged && res.status(200).json({ status: 200,message: "success" ,updatedTo: req.body  });
+    updateReservation.acknowledged ?
+     res.status(200).json({ status: 200,message: "success" ,data: req.body  }):
+     res.status(404).json({ status:404,message: "failure"   })
+     ;
 }
 client.close()
 
@@ -117,4 +144,5 @@ module.exports = {
     addUser,
     updateUser,
     deleteUser,
+    validateUser,
 };

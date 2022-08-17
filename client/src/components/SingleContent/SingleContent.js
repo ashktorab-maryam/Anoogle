@@ -1,6 +1,6 @@
 import { img_300, unavailable } from "../../config/config"
 import styled from "styled-components"
-import {Badge} from "@material-ui/core"
+
 
 const SingleContent =({
     id, 
@@ -12,7 +12,6 @@ const SingleContent =({
 }) => {
     return (
         <Div>
-            {/* <Badge badgeContent={vote_average}/> */}
             <Poster src={poster ? `${img_300}/${poster}` : unavailable} alt ={title}/>
             <Title>{title}</Title>
             <SubTitle>{media_type === "tv" ? "TV Series" : "Movie"}</SubTitle>

@@ -40,7 +40,7 @@ const Search = (handleSelect) => {
             {/* <p>{content[0].poster_path}</p> */}
                 {
                     content && content.length>0 ?
-                     content.map((c) => (
+                    content.map((c) => (
                         <SingleContent key={c.id}
                         id={c.id} 
                         poster={c.poster_path} 
@@ -61,6 +61,7 @@ const Search = (handleSelect) => {
 };
 
 const Input = styled.input`
+margin-left: 35%;
 border-radius: 5px;
 border: 1px solid lightgrey;
 width:300px;

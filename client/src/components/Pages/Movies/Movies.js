@@ -2,11 +2,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import SingleContent from "../../SingleContent/SingleContent";
 import styled from "styled-components"
-import CustomPagination from "../../Pagination/CustomPagination";
 import { Link } from "react-router-dom";
 
 const Movies = () => {
-
+    
     const [page,setPage] = useState(1);
     const [content, setContent] = useState([]);
 
