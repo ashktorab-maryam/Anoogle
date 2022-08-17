@@ -40,9 +40,35 @@ const Trending = () => {
                 }
             </TrendingS>
             {/* <CustomPagination setPage={setPage}/> */}
+            <Div>
+            <Button onClick={()=>setPage(page-1)} disabled={page<=1}>Previous</Button>
+            <Span>{page}</Span>
+            <Button onClick={()=>setPage(page+1)}>Next</Button>
+            </Div>
         </div>
     );
 };
+
+const Div = styled.div`
+margin-top: 20px;
+text-align:center;
+align-self:center;
+object-fit: contain;
+`;
+
+const Span = styled.span`
+font-size: 25px;
+color: blue;
+`;
+const Button = styled.button`
+font-size: 20px;
+background-color:blue;
+border-radius: 15px;
+padding: 5px 10px;
+margin:10px;
+border: none;
+color: lightblue;
+`;
 
 const TrendingS = styled.div`
 display: flex;

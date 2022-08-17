@@ -53,13 +53,17 @@ const addUser = async(req, res) => {
     const db = client.db("ANOOGLE");
     console.log("connected!");
     req.body.email=req.body.email.toLowerCase()
+    const existUser = await db.collection("SignInUser").findOne({email:req.body.email.toLowerCase()});
+    if (existUser) {
+        return res.status(404).json({ status: 404, data: req.body, message: "User already exist" });
+    }
     const result = await db.collection("SignInUser").insertOne(req.body);
     console.log(req.body);
-    res.status(201).json({ status: 201, data: req.body,message: "reservation success" });
+    res.status(201).json({ status: 201, data: req.body,message: "Sign up success" });
     }
 catch (err) {
     console.log(err.stack);
-    res.status(400).json({ status: 400, data: req.body, message: "failed reservation" });
+    res.status(503).json({ status: 503, data: req.body, message: "failed sign up" });
 }
     client.close();
     console.log("disconnected!");

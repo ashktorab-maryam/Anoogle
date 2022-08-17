@@ -35,9 +35,13 @@ const SignUp = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                setCurrentUser(data.data)
-                sessionStorage.setItem('user', JSON.stringify(data));
-                navigate("/signin")
+                if(data.status===201){
+                    setCurrentUser(data.data)
+                    sessionStorage.setItem('user', JSON.stringify(data));
+                    navigate("/signin")
+                }else{
+                window.alert("User already signed up!")
+            }
             })
         } 
 

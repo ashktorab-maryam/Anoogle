@@ -16,7 +16,7 @@ return (
         <NavLinksWrapper>
             <StyledNavLink to="/movies">Movies</StyledNavLink>
             <StyledNavLink to="/search">Search</StyledNavLink>
-            {currentUser? <StyledLink to="/profile">Howdy, {currentUser.givenName}</StyledLink> :
+            {currentUser? <StyledLink to="/profile">Hey {currentUser.givenName}</StyledLink> :
             (<><StyledNavLink to="/signin">Sign In</StyledNavLink> 
             <StyledNavLink to="/signup">Sign Up</StyledNavLink>
             </>)

@@ -19,13 +19,8 @@ const Search = (handleSelect) => {
         );
             console.log(data)
         satContent(data.results)
-        // setNumOfPages(data);
     }
 
-    // useEffect(() => {
-    //     window.scroll(0, 0);
-    //     fetchSearch();
-    // })
 
     return (
         <div>
@@ -37,7 +32,6 @@ const Search = (handleSelect) => {
 />
     <Button onClick={fetchSearch}>search</Button>
             <TrendingS>
-            {/* <p>{content[0].poster_path}</p> */}
                 {
                     content && content.length>0 ?
                     content.map((c) => (
@@ -53,12 +47,37 @@ const Search = (handleSelect) => {
                     <h2>No Movies Found</h2>
 
                 }
-               
             </TrendingS>
             {/* <CustomPagination setPage={setPage}/> */}
+            {/* <Div> 
+            <Button2 onClick={()=>setPage(page-1)} disabled={page<=1}>Previous</Button2>
+            <Span>{page}</Span>
+            <Button2 onClick={()=>setPage(page+1)}>Next</Button2>
+            </Div> */}
         </div>
     );
 };
+
+const Div = styled.div`
+margin-top: 20px;
+text-align:center;
+align-self:center;
+object-fit: contain;
+`;
+
+const Span = styled.span`
+font-size: 25px;
+color: blue;
+`;
+const Button2 = styled.button`
+font-size: 20px;
+background-color:blue;
+border-radius: 15px;
+padding: 5px 10px;
+margin:10px;
+border: none;
+color: lightblue;
+`;
 
 const Input = styled.input`
 margin-left: 35%;

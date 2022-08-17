@@ -30,7 +30,7 @@ const Movies = () => {
             <TrendingS>
                 {
                     content && content.map((c) => (
-                        <Link to={`/movies/${c.id}`}>
+                        <StyledLink to={`/movies/${c.id}`}>
                         <SingleContent key={c.id}
                         id={c.id} 
                         poster={c.poster_path} 
@@ -38,19 +38,51 @@ const Movies = () => {
                         date={c.first_air_date || c.release_date}
                         media_type={c.media_type}
                         vote_average={c.vote_average}/>
-                        </Link> 
+                        </StyledLink> 
                     ))
                 }
             </TrendingS>
+            {/* <Input type="number" value={page} onChange={(e)=>setPage(e.target.value)} min="1"/> */}
             {/* <CustomPagination setPage={setPage}/> */}
+            <Div>
+            <Button onClick={()=>setPage(page-1)} disabled={page<=1}>Previous</Button>
+            <Span>{page}</Span>
+            <Button onClick={()=>setPage(page+1)}>Next</Button>
+            </Div>
         </div>
     );
 };
+
+
+const Div = styled.div`
+margin-top: 20px;
+text-align:center;
+align-self:center;
+object-fit: contain;
+`;
+
+const Span = styled.span`
+font-size: 25px;
+color: blue;
+`;
 
 const TrendingS = styled.div`
 display: flex;
 flex-wrap: wrap;
 justify-content: space-around;
+`;
+const Button = styled.button`
+font-size: 20px;
+background-color:blue;
+border-radius: 15px;
+padding: 5px 10px;
+margin:10px;
+border: none;
+color: lightblue;
+`;
+
+const StyledLink = styled(Link)`
+text-decoration: none;
 `;
 
 const Title = styled.span`
